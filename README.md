@@ -1,5 +1,7 @@
 ## DataFlow Dashboard
 
+**Live demo**: `https://modern-board.netlify.app/`
+
 ### Project overview
 DataFlow Dashboard is a responsive analytics dashboard UI built with React and Vite. It demonstrates a clean component architecture, typed data models, simulated data fetching, and a polished sidebar navigation with desktop collapse + mobile/tablet overlay behavior.
 
