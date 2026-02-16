@@ -31,7 +31,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity"
@@ -50,7 +49,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}
       >
-        {/* Desktop collapse/expand toggle (half-out circle) */}
         <button
           type="button"
           className="
@@ -69,12 +67,18 @@ const Sidebar: React.FC<SidebarProps> = ({
 
         <div className="p-6 flex items-center justify-between">
           <div className={`flex items-center gap-2`}>
-            <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
-              D
+            <div className="w-8 h-8 rounded-lg border border-gray-200 bg-white flex items-center justify-center">
+              <img
+                src="/icons/logo.png"
+                alt="DataFlow logo"
+                className="w-5 h-5"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <span
               className={`
-                block whitespace-nowrap text-xl font-bold text-gray-800
+                block whitespace-nowrap text-xl font-extrabold text-gray-800
                 lg:overflow-hidden lg:transition-[max-width,opacity] lg:duration-150 lg:delay-200
                 ${isCollapsed ? 'lg:max-w-0 lg:opacity-0' : 'lg:max-w-[10rem] lg:opacity-100'}
               `}

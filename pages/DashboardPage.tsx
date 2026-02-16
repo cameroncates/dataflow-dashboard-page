@@ -1,7 +1,9 @@
 import React from 'react';
 import { Menu, RefreshCcw } from 'lucide-react';
+import { LayoutDashboard, Users } from 'lucide-react';
 import { DashboardData, TimeRange } from '../utils/types';
 import AnalyticsTab, { AnalyticsChartKey } from '../components/Dashboard/AnalyticsTab';
+import ComingSoon from '../components/ComingSoon/ComingSoon';
 import type { DashboardNavKey } from '../state/dashboard/dashboardReducer';
 import { DASHBOARD_NAV_ITEMS } from '../utils/constants/dashboardNav';
 
@@ -41,7 +43,6 @@ const DashboardPage: React.FC<DashboardPageProps> = ({
     <main
       className="w-full lg:flex-1 px-4 py-4 sm:px-6 sm:py-6 lg:px-6 lg:py-8"
     >
-      {/* Mobile Header Toggle */}
       <div className="lg:hidden flex items-center justify-between mb-6 bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white font-bold">
@@ -60,13 +61,15 @@ const DashboardPage: React.FC<DashboardPageProps> = ({
 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
         <h1 className="text-2xl font-semibold text-gray-800">{title}</h1>
-        <button
-          onClick={onRefreshDashboard}
-          className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 rounded-md bg-white hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 shadow-sm"
-        >
-          <RefreshCcw size={16} className={isBusy ? 'animate-spin' : ''} />
-          Refresh Dashboard
-        </button>
+        {activeNav === 'analytics' ? (
+          <button
+            onClick={onRefreshDashboard}
+            className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-200 rounded-md bg-white hover:bg-gray-50 transition-colors text-sm font-medium text-gray-700 shadow-sm"
+          >
+            <RefreshCcw size={16} className={isBusy ? 'animate-spin' : ''} />
+            Refresh Dashboard
+          </button>
+        ) : null}
       </div>
 
       {activeNav === 'analytics' && (
@@ -80,6 +83,22 @@ const DashboardPage: React.FC<DashboardPageProps> = ({
           onRetryNonBlockingError={onRetryNonBlockingError}
           onTimeRangeChange={onTimeRangeChange}
           onRefreshChart={(key: AnalyticsChartKey) => onRefreshChart(key)}
+        />
+      )}
+
+      {activeNav === 'workflows' && (
+        <ComingSoon
+          title="Workflows"
+          Icon={LayoutDashboard}
+          message="Coming soon"
+        />
+      )}
+
+      {activeNav === 'teams' && (
+        <ComingSoon
+          title="Teams"
+          Icon={Users}
+          message="Coming soon"
         />
       )}
     </main>

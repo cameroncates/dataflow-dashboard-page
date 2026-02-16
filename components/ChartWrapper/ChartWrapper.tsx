@@ -24,7 +24,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
     >
       <div className="flex justify-between items-start mb-2">
         <div className="flex-1">
-          <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
+          <h3 className="text-sm font-extrabold text-gray-700 uppercase tracking-wider">
             {title}
           </h3>
           {metric && (

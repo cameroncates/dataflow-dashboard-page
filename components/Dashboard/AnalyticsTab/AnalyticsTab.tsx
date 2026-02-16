@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import {
   BarChart,
   Bar,
@@ -13,6 +13,7 @@ import {
 } from 'recharts';
 import ChartWrapper from '../../ChartWrapper';
 import SourceList from '../../SourceList';
+import TimeRangeSelect from '../../TimeRangeSelect/TimeRangeSelect';
 import { DashboardData, TimeRange } from '../../../utils/types';
 
 export type AnalyticsChartKey = keyof DashboardData;
@@ -58,27 +59,8 @@ const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-4 mb-8">
-        <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-gray-500">Time Range</span>
-          <div className="relative">
-            <select
-              value={timeRange}
-              onChange={(e) => onTimeRangeChange(e.target.value as TimeRange)}
-              disabled={isBusy}
-              className="appearance-none bg-white border border-gray-200 rounded-md px-4 py-1.5 pr-8 text-sm font-medium text-green-700 hover:border-gray-300 focus:outline-none focus:ring-1 focus:ring-green-500"
-            >
-              <option value="7">Last 7 days</option>
-              <option value="30">Last 30 days</option>
-              <option value="90">Last 90 days</option>
-              <option value="365">Last year</option>
-            </select>
-            <ChevronDown
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-green-600 pointer-events-none"
-              size={14}
-            />
-          </div>
-        </div>
+      <div className="mb-8">
+        <TimeRangeSelect value={timeRange} onChange={onTimeRangeChange} disabled={isBusy} />
       </div>
 
       <div className="grid grid-cols-12 gap-6">
@@ -109,7 +91,7 @@ const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
         <div className="col-span-12 md:col-span-12 lg:col-span-8">
           <ChartWrapper
-            title="Unique Logins"
+            title="Number of Unique Logins"
             metric={data?.uniqueLogins.reduce((acc, curr) => Math.max(acc, curr.value), 0) || 0}
             onRefresh={() => onRefreshChart('uniqueLogins')}
             isLoading={Boolean(refreshing['uniqueLogins']) || isBusy || isGlobalLoading}
@@ -142,7 +124,7 @@ const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
         <div className="col-span-12 md:col-span-6 lg:col-span-6">
           <ChartWrapper
-            title="Workflow Queries"
+            title="Queries Executed in the Workflow"
             metric={
               ((data?.workflowQueries.reduce((sum, d) => sum + d.value, 0) || 0) / 1000).toFixed(
                 1,
@@ -255,7 +237,7 @@ const AnalyticsTab: React.FC<AnalyticsTabProps> = ({
 
         <div className="col-span-12 md:col-span-6">
           <ChartWrapper
-            title="Firewall Response Time"
+            title="Avg. Response Time - Firewall"
             metric={
               (data?.firewallResponseTime[data.firewallResponseTime.length - 1]?.value || 0).toFixed(
                 2,

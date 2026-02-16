@@ -19,7 +19,6 @@ const generateTimeData = (days: number, baseValue: number, volatility: number): 
 export const fetchDashboardData = async (range: TimeRange): Promise<DashboardData> => {
   const days = parseInt(range);
   
-  // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 800));
 
   return {
@@ -31,12 +30,12 @@ export const fetchDashboardData = async (range: TimeRange): Promise<DashboardDat
     uniqueLogins: generateTimeData(days, 350, 150),
     workflowQueries: generateTimeData(days, 300, 200),
     sourceQueries: [
-      { id: '1', name: 'Slack', count: 171000, color: '#4ADE80', icon: '💬' },
-      { id: '2', name: 'Microsoft Teams', count: 21000, color: '#60A5FA', icon: '👥' },
-      { id: '3', name: 'AWS Cloud', count: 7800, color: '#FBBF24', icon: '☁️' },
-      { id: '4', name: 'Google Cloud', count: 2100, color: '#EF4444', icon: '🌐' },
-      { id: '5', name: 'Oracle', count: 987, color: '#FB923C', icon: '🗄️' },
-      { id: '6', name: 'G Suite Gmail', count: 809, color: '#A78BFA', icon: '📧' },
+      { id: '1', name: 'Slack', count: 171000, color: '#4ADE80', icon: '/icons/slack.png' },
+      { id: '2', name: 'Microsoft Teams', count: 21000, color: '#60A5FA', icon: '/icons/teams.png' },
+      { id: '3', name: 'AWS Cloud', count: 7800, color: '#FBBF24', icon: '/icons/aws.png' },
+      { id: '4', name: 'Google Cloud', count: 2100, color: '#EF4444', icon: '/icons/google-cloud.png' },
+      { id: '5', name: 'Oracle', count: 987, color: '#FB923C', icon: '/icons/oracle.png' },
+      { id: '6', name: 'G Suite Gmail', count: 809, color: '#A78BFA', icon: '/icons/gmail.png' },
     ].map(s => ({ ...s, count: Math.floor(s.count * (0.8 + Math.random() * 0.4)) })),
     workflowResponseTime: generateTimeData(days, 10, 5),
     firewallCalls: generateTimeData(days, 12000, 5000),

@@ -16,7 +16,7 @@ DataFlow Dashboard is a responsive analytics dashboard UI built with React and V
 ### Setup instructions
 
 **Prerequisites**
-- Node.js 20+
+- Node.js 20+ (20.19.0)
 
 **Install**
 ```bash
