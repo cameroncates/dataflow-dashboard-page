@@ -6,7 +6,7 @@ export interface SourceListProps {
 }
 
 const SourceList: React.FC<SourceListProps> = ({ sources }) => {
-  const maxCount = Math.max(...sources.map((s) => s.count));
+  const maxCount = Math.max(1, ...sources.map((s) => s.count));
 
   const formatNumber = (num: number) => {
     if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
@@ -21,13 +21,19 @@ const SourceList: React.FC<SourceListProps> = ({ sources }) => {
       </div>
       {sources.map((source) => (
         <div key={source.id} className="flex items-center gap-3">
-          <span className="text-lg w-6 flex justify-center">{source.icon}</span>
+          <div className="w-6 flex justify-center">
+            <img
+              src={source.icon}
+              alt={`${source.name} logo`}
+              className="w-5 h-5"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
           <div className="flex-1">
             <div className="flex justify-between items-center mb-1">
               <span className="text-sm font-medium text-gray-700">{source.name}</span>
-              <span className="text-sm font-bold text-gray-900">
-                {formatNumber(source.count)}
-              </span>
+              <span className="text-sm font-bold text-gray-900">{formatNumber(source.count)}</span>
             </div>
             <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
               <div

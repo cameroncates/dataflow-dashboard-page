@@ -59,7 +59,6 @@ const App: React.FC = () => {
         refreshing={refreshing}
         activeNav={activeNav}
         onOpenSidebar={() => {
-          // On mobile: open drawer; on desktop (when collapsed): expand
           setSidebarOpen(true);
           setSidebarCollapsed(false);
         }}
