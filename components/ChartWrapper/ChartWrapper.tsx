@@ -35,6 +35,7 @@ const ChartWrapper: React.FC<ChartWrapperProps> = ({
           onClick={onRefresh}
           className="text-gray-400 hover:text-gray-600 transition-colors p-1"
           disabled={isLoading}
+          aria-label={`Refresh ${title}`}
         >
           <RotateCcw size={16} className={isLoading ? 'animate-spin' : ''} />
         </button>
